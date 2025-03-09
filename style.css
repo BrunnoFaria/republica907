@@ -38,6 +38,17 @@ header nav ul li {
     margin-left: 20px;
 }
 
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column; /* Colocando os itens em coluna */
+        text-align: center; /* Centralizando o texto */
+    }
+
+    header nav ul li {
+        margin: 10px 0; /* Ajustando a margem */
+    }
+}
+
 header nav ul li a {
     text-decoration: none;
     color: #333;
@@ -62,7 +73,8 @@ header nav ul li a:hover {
 
 .video-section iframe {
     width: 100%;
-    height: 570px !important;
+    aspect-ratio: 16 / 9;
+    height: auto;
 }
 
 .video-section div[style*="padding"] {
@@ -71,7 +83,8 @@ header nav ul li a:hover {
 
 @media (max-width: 768px) {
     .video-section iframe {
-        height: 180px;
+        height: auto;
+        aspect-ratio: 16 / 9;
     }
 }
 
@@ -124,6 +137,18 @@ header nav ul li a:hover {
 .video-section {
     flex: 1;
     padding: 20px;
+    position: relative;
+}
+
+@media (max-width: 770px) {
+    .content-container {
+        flex-direction: column;
+    }
+
+    .video-section {
+        padding-left: 0;
+        margin-top: 20px; /* Adicionado espaço entre o texto e o vídeo */
+    }
 }
 
 .content h2 {

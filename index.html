@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>República 907</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1><i class="fas fa-home"></i> República 907</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#fotos">Fotos</a></li>
+                <li><a href="#localizacao">Localização</a></li>
+                <li><a href="#airbnb">Airbnb</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Design e Conforto no Coração de [São Paulo]</h2>
+                <p>Descubra o lugar ideal para suas férias ou escapadas de fim de semana. República 907 oferece
+                    conforto, estilo e uma localização privilegiada para que você aproveite ao máximo sua estadia.</p>
+            </div>
+        </section>
+        <section class="content">
+            <div class="content-container">
+                <div class="text-column">
+                    <h2>República 907 - Seu Novo Lar em São Paulo</h2>
+                    <p>República 907 é um conceito urbano que oferece o melhor de São Paulo em um só lugar. Localizado
+                        no coração da cidade, o apartamento oferece uma experiência única para quem busca conforto,
+                        estilo e uma localização privilegiada.<br><br>
+                        Com amplos espaços, moderno e uma atmosfera acolhedora, República 907 é o lugar ideal para você
+                        que vem a trabalho, para eventos, com sua família ou grupo de amigos ou estadias mais longas.
+                        Nossos quartos são equipados com todas as comodidades necessárias para garantir o seu conforto,
+                        enquanto as áreas comuns oferecem espaços para relaxar, socializar e se divertir.<br><br>
+                        Desfrute da nossa piscina, academia se precisar trabalhar temos um desktop pronto no apartamento
+                        ou o coworking. Serviços de lavanderia e internet de alta velocidade, próximo ao Metrô,
+                        restaurantes e aos principais pontos turísticos os de São Paulo. Estamos prontos para tornar a
+                        sua estadia no República 907 inesquecível.<br><br>
+                        Venha conhecer a República 907 e descubra o seu novo lar em São Paulo!</p>
+                </div>
+                <div class="video-container">
+                    <div class="video-thumbnail"
+                        data-video="https://player.vimeo.com/video/1063918099?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479">
+                        <img src="./Assets/thumbnail_video1.jpg" alt="Thumbnail do Vídeo 1">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-thumbnail"
+                        data-video="https://player.vimeo.com/video/1064731346?h=0cc3aa4e59&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479">
+                        <img src="./Assets/thumbnail_video2.jpg" alt="Thumbnail do Vídeo 2">
+                        <div class="play-button">▶</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>República 907 ®</h3>
+                <p>Seu refúgio em São Paulo. Desfrute de conforto, estilo e localização privilegiada.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><i class="fas fa-phone"></i> (XX) XXXX-XXXX</p>
+                <p><i class="fas fa-envelope"></i> contato@republica907.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Navegação</h3>
+                <ul>
+                    <li><a href="#hero">Início</a></li>
+                    <li><a href="#fotos">Fotos</a></li>
+                    <li><a href="#localizacao">Localização</a></li>
+                    <li><a href="#airbnb">Airbnb</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="#" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 República 907 ®. Todos os direitos reservados. Desenvolvido por Brunno Faria.</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+      const thumbnails = document.querySelectorAll('.video-thumbnail');
+
+      thumbnails.forEach((thumbnail) => {
+        thumbnail.addEventListener('click', function () {
+          const videoUrl = this.getAttribute('data-video');
+          const iframe = document.createElement('iframe');
+
+          iframe.setAttribute('src', videoUrl);
+          iframe.setAttribute('frameborder', '0');
+          iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media');
+          iframe.setAttribute('title', 'República 907');
+          iframe.style.aspectRatio = '16 / 9';
+
+          // Remove o thumbnail e aplica a expansão
+          this.innerHTML = '';
+          this.appendChild(iframe);
+          this.classList.add('expanded');
+        });
+      });
+    });
+    </script>
+</body>
+
+</html>

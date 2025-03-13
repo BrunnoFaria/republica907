@@ -99,13 +99,15 @@ header nav ul li a:hover {
   gap: 20px;
   width: 100%;
   max-width: 1200px;
-}
+ }
 
 .video-thumbnail {
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
   aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .video-thumbnail img {
@@ -120,11 +122,15 @@ header nav ul li a:hover {
   height: 100%;
   border: none;
   border-radius: 8px;
+  display: none; 
 }
 
-.video-thumbnail.expanded {
-  grid-column: 1 / -1;
-  height: 600px;
+.video-thumbnail.show-video img {
+  display: none; 
+}
+
+.video-thumbnail.show-video iframe {
+  display: block; /* Exibe o iframe quando o vídeo é exibido */
 }
 
 .play-button {
@@ -216,23 +222,23 @@ footer {
     flex-direction: column;
     text-align: center;
   }
-  
+
   header nav ul li {
     margin: 10px 0;
   }
-  
+
   .video-container {
     grid-template-columns: 1fr;
   }
-  
+
   .video-thumbnail.expanded {
     height: 300px;
   }
-  
+
   .footer-container {
     flex-direction: column;
   }
-  
+
   .footer-section {
     text-align: center;
   }

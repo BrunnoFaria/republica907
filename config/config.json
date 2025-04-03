@@ -1,0 +1,8 @@
+{
+  "apiKey": "AIzaSyD8p868RDVzGkT8I2pwI5j-1qO4WUzVSA8",
+  "debug": false,
+  "mapOptions": {
+    "zoom": 15,
+    "hidePOI": true
+  }
+}

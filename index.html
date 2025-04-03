@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <!-- Metadados básicos -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>República 907 | Design Moderno e Localização Ideal em São Paulo</title>
+  <meta name="description" content="República 907: Apartamento com design moderno no coração de SP. Ideal para turismo e negócios. Reserve agora no Airbnb, Booking ou Decolar.">
+
+  <!-- Meta PWA (melhor posicionamento antes dos styles) -->
+  <meta name="theme-color" content="#FF5A5F">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/icons/icon-192.webp">
+   
+
+ <!-- CSS Crítico Inline (mantido igual) -->
+ <style>
+  :root {
+    --primary-color: #003580;
+    --secondary-color: #F8F8F8;
+    --accent-color: #FF5A5F;
+    --text-color: #333;
+    --background-color: #fff;
+  }
+ 
+  header {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .hero {
+    background-image: url("./assets/fotos/imagem-background/imagem-backgroundhero-background.webp");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 53, 128, 0.7), rgba(0, 0, 0, 0.5));
+  }
+  body { opacity: 0; }
+  body.loaded { opacity: 1; transition: opacity 0.3s; }
+
+  .hero, .hero::before {
+    min-height: 100vh;
+  }
+  .hero-content {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out 0.3s forwards;
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+</style>
+
+<!-- Pré-conexões e pré-carregamentos -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://maps.googleapis.com">
+<link rel="preconnect" href="https://maps.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://maps.googleapis.com">
+<link rel="preconnect" href="https://code.jquery.com">
+<link rel="preload" href="./assets/fonts/roboto-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- CSS Assíncrono -->
+<link rel="stylesheet" href="./css/style.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="./css/style.css"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+ <!-- Favicon e ícones -->
+ <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+ <!-- Schema Markup -->
+ <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "República 907",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Paulista, 907",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-23.563987",
+      "longitude": "-46.653145"
+    }
+  }
+  </script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WBEB9HKSXT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WBEB9HKSXT');
+</script>
+
+
+
+  <!-- OG Tags -->
+  <meta property="og:title" content="República 907 - Sua estadia premium em São Paulo">
+  <meta property="og:description" content="Conforto, estilo e localização privilegiada no coração da cidade.">
+  <meta property="og:image" content="https://seusite.com/assets/fotos/background/hero-background.jpeg">
+  <meta property="og:url" content="https://seusite.com">
+  <meta property="og:type" content="website">
+  
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="República 907">  
+ 
+  <!-- Adicione no <head> para pré-conectar aos CDNs usados -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://player.vimeo.com">
+  <!-- Splash Screen Apple -->
+  <link rel="apple-touch-startup-image" href="/icons/splash-640x1136.png" 
+  media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
+
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <h1><i class="fas fa-home"></i> República 907</h1>
+    </div>
+    <button class="menu-toggle" aria-label="Abrir menu">
+      <i class="fas fa-bars"></i> <!-- Ícone do menu hambúrguer -->
+    </button>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="fotos.html">Fotos</a></li>
+        <li><a href="index.html#localizacao" class="location-link">
+          <i class="fas fa-map-marker-alt"></i> Localização
+        </a>
+        <li>
+          <a href="#reservas" class="reservas-link">
+            <i class="fas fa-calendar-check"></i> Reservas Online 
+            <span class="badge" aria-hidden="true">✨</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" data-animate>
+      <div class="hero-content">
+        <h2>Design e Conforto no Coração de [São Paulo]</h2>
+        <p>Descubra o lugar ideal para suas férias ou escapadas de fim de semana. República 907 oferece conforto, estilo e uma localização privilegiada para que você aproveite ao máximo sua estadia.</p>
+        <a href="#reservas" class="btn-cta">Reservar Agora</a>
+      </div>
+    </section>
+    <section class="content" data-animate>
+      <div class="content-container">
+        <div class="text-column">
+          <h2>República 907 - Seu Novo Lar em São Paulo</h2>
+          <p>República 907 é um conceito urbano que oferece o melhor de São Paulo em um só lugar. Localizado no coração da cidade, o apartamento oferece uma experiência única para quem busca conforto, estilo e uma localização privilegiada.<br><br>
+            Com amplos espaços, moderno e uma atmosfera acolhedora, República 907 é o lugar ideal para você que vem a trabalho, para eventos, com sua família ou grupo de amigos ou estadias mais longas. Nossos quartos são equipados com todas as comodidades necessárias para garantir o seu conforto, enquanto as áreas comuns oferecem espaços para relaxar, socializar e se divertir.<br><br>
+            Desfrute da nossa piscina, academia se precisar trabalhar temos um desktop pronto no apartamento ou o coworking. Serviços de lavanderia e internet de alta velocidade, próximo ao Metrô, restaurantes e aos principais pontos turísticos os de São Paulo. Estamos prontos para tornar a sua estadia no República 907 inesquecível.<br><br>
+            Venha conhecer a República 907 e descubra o seu novo lar em São Paulo!</p>
+        </div>
+        <div class="video-container">
+        <div class="video-thumbnail" data-video="https://player.vimeo.com/video/1063918099?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479">
+          <img data-src="./assets/fotos/video-thumbnails/thumbnail_video1.webp" alt="Vídeo tour da República 907: sala de estar e cozinha integrada" class="lazy-load">
+          <div class="play-button" aria-label="Reproduzir"></div>
+          <div class="thumbnail-placeholder"></div>
+        </div>
+          <div class="video-thumbnail" data-video="https://player.vimeo.com/video/1064731346?h=0cc3aa4e59&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479">
+            <img data-src="./assets/fotos/video-thumbnails/thumbnail_video2.webp" alt="Vídeo tour da República 907: tour pelo apartamento, áreas comuns e externas" class="lazy-load">
+            <div class="play-button" aria-label="Reproduzir"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="localizacao">
+      <h2>Localização</h2>
+      <p>República 907 está localizada no coração de São Paulo, próximo aos principais pontos turísticos e com fácil acesso ao metrô.</p>
+      <div id="map" style="height: 400px; width: 100%; border-radius: 8px;"></div>      
+    </section>
+    <section id="reservas" class="reservas-section">
+      <div class="content-container">
+        <h2> <i class="fas fa-calendar-alt"></i>Como Reservar</h2>
+        <p>Escolha sua plataforma preferida:</p>
+        <div class="platform-buttons">
+          <a href="https://www.airbnb.com.br/rooms/1355459625289939415" target="_blank" rel="noopener noreferrer" class="btn-platform airbnb">
+            <i class="fab fa-airbnb"></i> Airbnb
+          </a>
+          <a href="https://www.booking.com/Share-xLsnD9" target="_blank" rel="noopener noreferrer" class="btn-platform booking">
+            <i class="fas fa-hotel"></i> Booking.com
+          </a>
+          <a href="https://www.decolar.com/alugueis-por-temporada/h-6456025/rp907---design-moderno-no-coracao-de-sao-paulo-sao+paulo" target="_blank" rel="noopener noreferrer" class="btn-platform decolar">
+            <i class="fas fa-plane"></i> Decolar
+          </a>
+        </div>   
+      </div>
+    </section>
+  </main>
+  <footer data-animate>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>República 907 ®</h3>
+        <p>Seu refúgio em São Paulo. Desfrute de conforto, estilo e localização privilegiada.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Contato</h3>
+        <p><i class="fas fa-phone"></i> (XX) XXXX-XXXX</p>
+        <p><i class="fas fa-envelope"></i> contato@republica907.com</p>
+      </div>
+      <div class="footer-section">
+        <h3>Navegação</h3>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="fotos.html">Fotos</a></li>
+          <li><a href="#reservas">Reservas Online</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Plataformas de Reserva</h3>
+        <div class="social-icons">
+          <a href="https://www.airbnb.com.br/rooms/1355459625289939415" target="_blank" title="Airbnb">
+            <i class="fab fa-airbnb"></i>
+            <span>Airbnb</span>
+          </a>
+           <a href="https://www.decolar.com/alugueis-por-temporada/h-6456025/rp907---design-moderno-no-coracao-de-sao-paulo-sao+paulo" target="_blank" title="Decolar" class="btn-platform decolar">
+            <i class="fas fa-plane"></i>
+            <span>Decolar</span>
+          </a>
+          <a href="https://www.booking.com/Share-xLsnD9" target="_blank" title="Booking.com" class="btn-platform booking">
+            <i class="fas fa-hotel"></i>
+            <span>Booking.com</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 República 907 ®. 
+        <a href="politica-de-privacidade.html" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style="color: var(--accent-color);">
+          Política de Privacidade
+        </a> 
+        Todos os direitos reservados. Desenvolvido por Brunno Faria.
+      </p>
+    </div>
+  </footer>
+  
+<!-- Mantenha APENAS este (substitua o atual) -->
+<div id="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--primary-color); color: white; padding: 15px; text-align: center; z-index: 1000;">
+  <p>🍪 Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="./politica-de-privacidade.html" style="color: var(--accent-color);">Política de Privacidade</a>.</p>
+  <button onclick="acceptCookies()" style="background: var(--accent-color); color: white; border: none; padding: 8px 20px; border-radius: 4px; margin: 0 5px; cursor: pointer;">Aceitar</button>
+  <button onclick="denyCookies()" style="background: transparent; border: 1px solid white; color: white; padding: 8px 20px; border-radius: 4px; margin: 0 5px; cursor: pointer;">Recusar</button>
+</div>
+
+<script>
+  // ===== [1. Funções de Gerenciamento de Cookies] =====
+  function closeCookieBanner() {
+    const banner = document.getElementById('cookie-banner');
+    banner.style.opacity = '0';
+    banner.style.transition = 'opacity 0.3s ease-out';
+    setTimeout(() => {
+      banner.style.display = 'none';
+      document.querySelector('header')?.focus(); // Foco acessível
+    }, 300);
+  }
+
+  function acceptCookies() {
+    localStorage.setItem('cookies-accepted', 'true');
+    closeCookieBanner();
+    loadGA4();
+    document.documentElement.classList.add('cookies-accepted');
+  }
+
+  function denyCookies() {
+    localStorage.setItem('cookies-accepted', 'false');
+    closeCookieBanner();
+  }
+
+  // ===== [2. Configuração do Google Analytics] =====
+  function loadGA4() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    
+    gtag('config', 'G-WBEB9HKSXT', {
+      debug_mode: false,
+      send_page_view: true,
+      cookie_flags: 'SameSite=None;Secure',
+      enable_enhanced_measurement: true
+    });
+  }
+
+  // ===== [3. Verificação Inicial] =====
+  if (!localStorage.getItem('cookies-accepted')) {
+    document.getElementById('cookie-banner').style.display = 'block';
+  } else if (localStorage.getItem('cookies-accepted') === 'true') {
+    loadGA4();
+  }
+
+  // ===== [4. Inicialização da Página] =====
+  document.addEventListener('DOMContentLoaded', function() {
+    document.body.classList.add('loaded');
+    
+    // Pré-carrega hero image
+    const heroImage = new Image();
+    heroImage.src = './assets/fotos/imagem-background/hero-background.webp';
+    heroImage.onload = () => {
+      document.querySelector('.hero').style.setProperty('--hero-image', `url('${heroImage.src}')`);
+      document.querySelector('.hero').classList.add('loaded');
+    };
+  });
+
+  // ===== [5. Schema Markup (mantido)] =====
+  type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "República 907",
+    "image": "https://seusite.com/logo.webp"
+  }
+</script>
+
+<!-- Tag do GTAG (sempre carregada, mas só ativa após acceptCookies()) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WBEB9HKSXT"></script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- JavaScript do Lightbox (deve vir DEPOIS do jQuery) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script src="./js/main.js" defer></script>
+
+
+<!-- Botões flutuantes -->
+<!-- Botões Flutuantes (POSIÇÃO CORRETA) -->
+<div class="floating-buttons">
+  <button class="theme-toggle" aria-label="Alternar tema claro/escuro">
+    <i class="fas fa-moon"></i>
+  </button>
+  <a href="#reservas" class="floating-cta" aria-label="Reservar">
+    <i class="fas fa-calendar-check"></i>
+  </a>
+</div>
+
+<script>
+  // Registro do Service Worker com controle de versão
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('Service Worker registrado (v5):', reg))
+        .catch(err => console.error('Falha no Service Worker:', err));
+    });
+  }
+</script>
+
+
+</body>
+
+</html>

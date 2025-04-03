@@ -1,0 +1,1474 @@
+/* ===== FONTES LOCAIS ===== */
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/poppins-regular-webfont.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/poppins-bold-webfont.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../assets/fonts/roboto-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../assets/fonts/Roboto-500.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+
+:root {
+  --primary-color: #003580; /* Azul escuro */
+  --secondary-color: #F8F8F8; /* Cinza claro */
+  --accent-color: #FF5A5F; /* Vermelho (destaque) */
+  --text-color: #333; /* Cor do texto principal */
+  --background-color: #fff; /* Cor de fundo */
+  --footer-color: #333; /* Cor do rodapé */
+  --footer-text-color: #fff; /* Cor do texto no rodapé */
+  --transition-duration: 0.4s;
+  --transition-easing: cubic-bezier(0.25, 0.8, 0.25, 1);
+  --text-light: #202124;
+  --text-dark: #e8eaed;
+  --bg-light: #f8f9fa;
+  --bg-dark: #121212;
+  --primary-light: #1a73e8; /* Azul claro (modo claro) */
+  --primary-dark: #0d47a1;  /* Azul escuro (modo escuro) */
+  --brand-blue: #003580; /* Azul original do logo */
+}
+
+body {
+  font-family: 'Roboto', -apple-system,BlinkMacSystemFont, sans-serif;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  width: 100%;
+  background-color: var(--background-color);
+  opacity: 0;
+  transition:
+  background-color var(--transition-duration) var(--transition-easing),
+  color var(--transition-duration) var(--transition-easing),
+  border-color var(--transition-duration) var(--transition-easing);
+  --primary-color: var(--primary-light);
+  --text-color: var(--text-light);
+  --background-color: var(--bg-light);
+  -webkit-font-smoothing: antialiased; /* Melhora nitidez no Chrome/Safari */
+  -moz-osx-font-smoothing: grayscale; /* Firefox */
+  text-rendering: optimizeLegibility; /* 
+  font-smooth: always;                       /* Padrão CSS */
+  font-feature-settings: 'kern' 1, 'liga' 1; /* Kerning e ligaduras */
+}
+
+body.loaded { opacity: 1; transition: opacity 0.3s; }
+
+/* Transições suaves para todos os elementos afetados */
+body, header, footer, .card, .btn-platform, .floating-cta {
+  transition:
+    background-color var(--transition-duration) var(--transition-easing),
+    color var(--transition-duration) var(--transition-easing),
+    border-color var(--transition-duration) var(--transition-easing);
+}
+
+
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+
+.video-thumbnail {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: visible;
+  border-radius: 8px;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  will-change: transform;
+}
+
+.thumbnail-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  color: #999;
+  font-size: 14px;
+}
+
+.video-thumbnail.show-video .thumbnail-placeholder {
+  display: none !important;
+}
+
+.video-thumbnail:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+/* Reserve espaço para imagens/vídeos antes do carregamento */
+.video-thumbnail, .hero::before {
+  aspect-ratio: 16/9;
+  background: #f0f0f0; /* Cor de fallback */
+}
+
+/* Garante que o conteúdo principal sempre ocupe no mínimo a altura da viewport */
+html, body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available; /* Para mobile browsers */
+}
+
+main {
+  min-height: calc(100vh - altura_do_header - altura_do_footer);
+  /* Substitua pelos valores reais. Exemplo: */
+  min-height: calc(100vh - 80px - 200px);
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden; /* Impede o scroll horizontal */
+  width: 100%; /* Garante que o body ocupe 100% da largura */
+}
+
+header,
+footer {
+  width: 100%; /* Garante que ocupem 100% da largura */
+  box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+header {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+  background-color: rgba(248, 248, 248, 0.9); /* Fundo semi-transparente */
+  backdrop-filter: blur(10px); /* Efeito de desfoque */
+}
+
+header .logo h1 {
+  margin: 0;
+  font-size: 2em;
+  color: var(--primary-color); /* Usando a variável */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+header .logo h1 i {
+  margin-right: 10px;
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+header nav ul li {
+  margin-left: 20px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: var(--text-color); /* Usando a variável */
+  font-weight: bold;
+}
+
+header nav ul li a:hover {
+  color: var(--accent-color); /* Usando a variável */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links li a:hover {
+  color: var(--accent-color);
+  background-color: rgba(255, 90, 95, 0.1);
+}
+
+/* Ícone específico */
+.nav-links li a i.fa-map-marker-alt {
+  color: var(--primary-color);
+  font-size: 0.9em;
+}
+
+/* Garante consistência entre páginas */
+.nav-links li a i {
+  transition: color 0.3s ease;
+}
+
+/* Estilo do badge */
+.reservas-link .badge {
+  font-size: 1.2em; /* 20% maior que o texto */
+  margin-left: 8px;
+  animation: pulse 1.5s infinite;
+  filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.7)); /* Brilho dourado */
+}
+
+/* Mantém o azul escuro original nestes elementos */
+header .logo h1,
+.reservas-section h2,
+.text-column h2 {
+  color: var(--brand-blue) !important; /* Azul fixo */
+}
+
+.btn-cta {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  display: inline-block; /* Garante que o botão ocupe apenas o espaço necessário */
+}
+
+.btn-cta:hover {
+  background-color: #E04A50; /* Cor mais escura ao passar o mouse */
+}
+
+/* ===== MICROINTERAÇÕES ===== */
+/* Botões principais (CTA, plataformas) */
+.btn-platform {
+  animation: pulse-plataformas 3s infinite ease-in-out;
+}
+
+.btn-cta, .btn-platform, .floating-cta {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-origin: center;
+}
+
+/* Efeito ao pressionar */
+.btn-cta:active, .btn-platform:active, .floating-cta:active {
+  transform: scale(0.95);
+}
+
+/* Efeito hover mais elaborado */
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botões de plataforma */
+.btn-platform:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Botão flutuante */
+.floating-cta:hover {
+  transform: scale(1.1) translateY(-5px);
+  animation: pulse 1.5s infinite;
+}
+
+/* Efeito de loading (para ações assíncronas) */
+.loading-spinner {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+main {
+  width: 100%; /* Garante que ocupe 100% da largura */
+  overflow-x: hidden; /* Impede o scroll horizontal */
+  box-sizing: border-box; /* Inclui padding na largura total */
+}
+
+/* Menu Hambúrguer para Telas Pequenas */
+.menu-toggle {
+  display: none; /* Oculta o botão do menu hambúrguer por padrão */
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.page-transition {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Container dos botões flutuantes */
+.floating-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 999;
+}
+
+.floating-buttons a,
+.floating-buttons button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-color);
+  color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+/* Botão de Tema */
+.theme-toggle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Botão de Reserva */
+.floating-cta {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+  from { opacity: 0.5; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animação de slide-up */
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animação de slide-down */
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ----- Animações ----- */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulse-plataformas {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.airbnb { animation-delay: 0s; }
+.booking { animation-delay: 1s; }
+.decolar { animation-delay: 2s; }
+
+/* Animações base */
+[data-animate] {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Configurações específicas para cada seção */
+.hero[data-animate] { 
+  transform: translateY(20px); 
+  scale: 0.98; /* Propriedade nova do CSS */
+}
+.hero[data-animate].animate {
+  transform: translateY(0) scale(1);
+}
+.content[data-animate] {
+  transform: translateY(40px);
+}
+footer[data-animate] {
+  transform: translateY(-40px);
+}
+
+/* Estado animado (adicionado via JavaScript) */
+[data-animate].animate {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* Adicionar delays progressivos para itens internos */
+.hero-content > * {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+}
+.hero.animate .hero-content > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero.animate .hero-content h2 { transition-delay: 0.1s; }
+.hero.animate .hero-content p { transition-delay: 0.3s; }
+
+/* ----- Lazy Loading ----- */
+.lazy-load {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+  -webkit-transition: opacity 0.5s ease;
+}
+.lazy-load.loaded {
+  opacity: 1;
+}
+
+.video-thumbnail img.loaded + .thumbnail-placeholder {
+  display: none;
+}
+
+.hero {
+  /* background-image: url("../assets/fotos/imagem-background/imagem-backgroundhero-background.webp"); */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Efeito parallax */
+  color: var(--footer-text-color); /* Usando a variável */
+  text-align: center;
+  padding: 100px 20px; /* Aumente o padding para dar mais espaço */
+  position: relative;
+  display: flex;
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(0, 53, 128, 0.7), rgba(0, 0, 0, 0.5)),
+  url("../assets/fotos/imagem-background/imagem-backgroundhero-background.webp") center/cover;
+  z-index: 0;  
+}
+
+/* Imagem principal (carregada via JS) */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(45deg, rgba(0, 53, 128, 0.7), rgba(0, 0, 0, 0.5)),
+    var(--hero-image) center/cover;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.hero.loaded::after {
+  opacity: 1; /* Revela a imagem quando carregada */
+}
+
+.hero-content {
+  max-width: 800px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero-content h2 {
+  font-size: 3em; /* Título grande */
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra no texto */
+}
+
+.hero-content p {
+  font-size: 1.2em;
+  margin-bottom: 40px; /* Espaçamento antes do botão */
+  line-height: 1.6;
+}
+
+.content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px; /* Ajuste o padding conforme necessário */
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row; /* Texto e vídeos lado a lado */
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  align-items: flex-start; /* Alinha os itens ao topo */
+}
+
+.text-column {
+  flex: 1; /* Ocupa o espaço disponível */
+  min-width: 50%; /* Garante que o texto não fique muito estreito */
+  max-width: 60%; /* Limita a largura máxima do texto */
+
+}
+
+.text-column h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: var(--primary-color); /* Usando a variável */
+}
+
+.text-column p {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: var(--text-color); /* Usando a variável */
+}
+
+.video-container {
+  flex: 1; /* Ocupa o espaço disponível */
+  min-width: 40%; /* Garante uma largura mínima */
+  max-width: 45%; /* Limita a largura máxima */
+  display: flex;
+  flex-direction: column; /* Empilha os vídeos verticalmente */
+  gap: 50px;
+  margin-top: 40px;
+  
+}
+
+.video-thumbnail {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.video-thumbnail iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+  display: none;
+}
+
+.video-thumbnail.show-video img {
+  display: none;
+}
+
+.video-thumbnail.show-video iframe {
+  display: block; /* Exibe o iframe quando o vídeo é exibido */
+}
+
+.video-thumbnail.video-loaded {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: 2px solid white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.play-button::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-40%, -50%);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent; 
+  border-left: 20px solid white;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.3));
+}
+
+
+.video-thumbnail:hover .play-button {
+  opacity: 1;
+  
+}
+
+.video-thumbnail::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s linear infinite;
+  opacity: 0;
+  z-index: 3;
+}
+
+.video-thumbnail.loading::after {
+  opacity: 1;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Estilo da seção de localização */
+#localizacao {
+  padding: 40px 20px;
+  background-color: var(--background-color);
+}
+
+#localizacao .content-container {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  align-items: center;
+}
+
+#localizacao .text-column {
+  flex: 1;
+  max-width: 50%;
+}
+
+#localizacao .text-column h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+#localizacao .text-column p {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: var(--text-color);
+}
+
+#localizacao .map-container {
+  flex: 1;
+  max-width: 50%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#localizacao #map {
+  height: 400px;
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  background-color: #f0f0f0; /* Cor de fallback */
+  min-height: 300px; /* Altura mínima */
+}
+
+/* Efeito para a seção de localização quando acessada via link */
+#localizacao:target {
+  animation: pulse-highlight 2s ease;
+}
+
+@keyframes pulse-highlight {
+  0% { box-shadow: 0 0 0 0 rgba(255, 90, 95, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(255, 90, 95, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 90, 95, 0); }
+}
+
+
+footer {
+  background-color: var(--footer-color); /* Usando a variável */
+  color: var(--footer-text-color); /* Usando a variável */
+  padding: 30px 20px;
+  font-size: 1em;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.footer-section h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  border-bottom: 5px solid var(--footer-text-color); /* Usando a variável */
+  padding-bottom: 5px;
+}
+
+.footer-section p {
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin: 10px 0;
+  color: var(--footer-text-color); /* Usando a variável */
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;  
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: var(--footer-text-color); /* Usando a variável */
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  color: var(--accent-color); /* Usando a variável */
+}
+
+.footer-section .social-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.footer-section .social-icons a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-section .social-icons i:first-child {
+  margin-right: 10px;
+  font-size: 1.2em;
+  min-width: 20px; /* Evita que ícones fiquem espremidos */
+}
+
+.footer-section .social-icons span {
+  flex-grow: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 0.85em; /* Tamanho mais legível que 0.6em */
+  opacity: 1 !important; /* Força visibilidade */
+}
+
+.footer-section .social-icons i.fa-external-link-alt {
+  margin-left: 8px;
+  font-size: 0.7em;
+  opacity: 0.7;
+  align-self: flex-end; /* Posiciona a seta na base do texto */
+  transition: opacity 0.3s;
+}
+
+.footer-section .social-icons a:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.footer-section .social-icons a:hover i.fa-external-link-alt {
+  opacity: 1;
+}
+
+.footer-section .social-icons a span {
+  font-size: 0.6em;
+  opacity: 1;
+}
+
+
+.footer-section .social-icons a.decolar i.fa-plane {
+  color: #FF8000; 
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: var(--footer-text-color); 
+  font-size: 2em;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--accent-color); 
+}
+
+
+/* Cores específicas para cada plataforma */
+.social-icons .fa-airbnb {
+  color: var(--accent-color); /* Cor oficial do Airbnb */
+}
+
+.social-icons .fa-plane {
+  color: var(--accent-color); /* Cor laranja para o Decolar */
+}
+
+.social-icons .fa-hotel {
+  color: var(--primary-color);/* Cor oficial do Booking.com */
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--footer-text-color); /* Usando a variável */
+}
+
+/* ----- Botão Flutuante ----- */
+.floating-cta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--accent-color);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: pulse 2s infinite;
+}
+
+.theme-toggle, .floating-cta {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.platform-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr))
+}
+.btn-platform {
+  padding: 12px 25px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  transition: transform 0.3s;
+}
+.btn-platform:hover {
+  transform: scale(1.05) translateY(-3px) !important; /* Prioridade sobre a animação */
+  animation: none; /* Pausa a pulsação no hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.airbnb { background: #FF5A5F; }
+.booking { background: #003580; }
+.decolar { background: #FF8000; }
+
+/* ===== DARK MODE ===== */
+body.dark-mode {
+  /* Cores Principais */
+  --primary-color: #4a8eff;        /* Azul mais vibrante (acessível) */
+  --primary-dark: #1a73e8;         /* Azul mais escuro */
+  --accent-color: #ff6b6b;         /* Vermelho suavizado */
+  
+  /* Cores de Fundo */
+  --background-color: #121212;     /* Preto profundo (corpo) */
+  --secondary-color: #1e1e1e;      /* Fundo de seções (mais claro que o corpo) */
+  
+  /* Cores de Texto */
+  --text-color: #f0f0f0;           /* Branco suave (WCAG AAA) */
+  --footer-text-color: #ffffff;     /* Branco puro (contraste garantido) */
+  
+  /* Componentes Específicos */
+  --footer-color: #000000;         /* Rodapé preto sólido */
+  
+  /* Transições */
+  transition:
+    background-color var(--transition-duration) var(--transition-easing),
+    color var(--transition-duration) var(--transition-easing);
+}
+
+/* Ajustes Específicos para Componentes no Dark Mode */
+body.dark-mode header {
+  background-color: var(--secondary-color) !important;
+  backdrop-filter: none; /* Remove desfoque */
+  border-bottom: 1px solid #333; /* Adiciona borda sutil */
+}
+
+body.dark-mode img {
+  filter: brightness(0.85) contrast(1.1); /* Ajuste de imagens */
+}
+
+/* Títulos com Cor Fixa (opcional) */
+body.dark-mode header .logo h1,
+body.dark-mode .reservas-section h2,
+body.dark-mode .text-column h2 {
+  color: var(--primary-color) !important; /* Usa --primary-color ao invés de --primary-dark */
+}
+
+.reservas-section h2 i.fa-calendar-alt {
+  margin-right: 10px; /* Aumenta o espaço após o ícone */
+  color: var(--accent-color); /* Mantém a cor consistente */
+  transition: transform 0.3s ease; /* Adiciona efeito opcional */
+}
+
+.reservas-section h2:hover i.fa-calendar-alt {
+  transform: scale(1.1);
+}
+
+.reservas-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaço consistente entre ícone e texto */
+}
+
+/* Botão de Toggle */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: var(--accent-color);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1002;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  border: none; 
+}
+
+.theme-toggle i {
+  transform: scale(1); /* Mantém a propriedade transform */
+  transition: 
+    transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    color 0.3s ease !important;
+}
+
+.theme-toggle:hover i {
+  transform: scale(1.1) rotate(15deg);
+  opacity: 0.9; /* Efeito sutil alternativa */
+  filter: drop-shadow(0 0 2px var(--accent-color)); /* Brilho suave */
+}
+
+.dark-mode .menu-toggle i {
+  color: var(--accent-color) !important;
+  transition: color 0.3s ease;
+}
+
+.dark-mode header nav ul {
+  background: #1a1a1a;
+  border: 1px solid #333;
+}
+
+.dark-mode .nav-links a {
+  color: #f0f0f0 !important;
+}
+
+.dark-mode .floating-buttons a,
+.dark-mode .floating-buttons button {
+  background: var(--primary-color);
+  color: white;
+}
+
+#cookie-banner {
+  transition: opacity 0.3s ease-out !important;
+}
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--primary-color);
+  color: white;
+  padding: 15px;
+  text-align: center;
+  z-index: 1000;
+  display: none;
+}
+
+.cookies-accepted .cookie-dependent { 
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 430px) {
+  /* Ajustes para o conteúdo principal */
+  main {
+    padding: 10px;
+    overflow-x: hidden;
+  }
+  
+  .hero {
+    padding: 30px 10px;
+  }
+
+  .hero-content h2 {
+    font-size: 1.2em;
+  }
+
+  .hero-content p {
+    font-size: 0.8em;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  .content-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .text-column {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .text-column h2 {
+    font-size: 1.2em;
+  }
+
+  .text-column p {
+    font-size: 0.8em;
+    line-height: 1.4;
+  }
+
+  .video-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .video-thumbnail {
+    aspect-ratio: 16/9;
+  }
+
+  .video-thumbnail img {
+    height: auto;
+  }
+
+  .play-button {
+    font-size: 1.2em;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-buttons {
+    bottom: 8px;
+    right: 8px;
+    gap: 6px;
+  }
+  
+  .floating-buttons a,
+  .floating-buttons button {
+    width: 36px;  /* Reduzido de 40px */
+    height: 36px; /* Reduzido de 40px */
+    font-size: 0.7em;
+  }
+
+  /* Ícones mais compactos */
+  .floating-buttons i {
+    transform: scale(0.85); /* Reduz o ícone internamente */
+  }
+}
+
+/* Ajuste para telas grandes */
+@media (min-width: 769px) {
+  .social-icons a {
+    font-size: 1.5em; /* Reduz o tamanho dos ícones em telas grandes */
+  }
+
+  .social-icons a:hover span {
+    opacity: 1; /* Mostra o texto ao passar o mouse */
+  }
+}
+
+
+@media (max-width: 768px) {
+  /* Ajustes para o header */
+  header {
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  header .logo h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  p, li, a {
+    text-shadow: 0 0 0.5px rgba(0,0,0,0.05); /* Melhora suavemente o contraste */
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .floating-buttons {
+    flex-direction: row;
+    bottom: 15px;
+    right: 15px;
+    gap: 10px;
+  }
+
+  .floating-buttons a,
+  .floating-buttons button {
+    width: 45px;
+    height: 45px;
+    font-size: 0.9em;
+  }
+
+  .theme-toggle {
+    order: 1;
+  }
+  
+  .floating-cta {
+    order: 2;
+  }
+
+
+  header nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--secondary-color); /* Usando a variável */
+    position: absolute;
+    top: 70px;
+    left: 0;
+    padding: 10px 0;
+    border-top: 1px solid var(--text-color); /* Usando a variável */
+    z-index: 1000;
+  }
+
+  header nav ul.active {
+    display: flex;
+  }
+
+  header nav ul li {
+    margin: 10px 0;
+  }
+
+  main {
+    padding: 10px;
+  }
+
+  /* Ajustes para o conteúdo principal */
+  .hero {
+    padding: 40px 10px;
+    background-attachment: scroll; 
+  }
+
+  .hero-content h2 {
+    font-size: 1.5em;
+  }
+
+  .hero-content p {
+    font-size: 0.9em;
+  }
+
+  .content {
+    padding: 10px;
+  }
+
+  .content-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    gap: 15px;    
+  }
+
+  .content.slide-up {
+    padding-top: 10px;
+    margin-top: -20px;
+  }
+
+  .text-column {
+    padding: 0; /* Ajusta o padding lateral */
+  }
+
+  .text-column, .video-container {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .text-column h2 {
+    font-size: 1.5em;
+  }
+
+  .text-column p {
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+
+  .video-container {
+    margin-top: 5px;
+    padding-top: 0;
+  }
+
+  .video-thumbnail {
+    aspect-ratio: 16/9;
+  }
+
+  .video-thumbnail img {
+    height: auto;
+  }
+
+  .video-thumbnail:hover {
+    transform: scale(1.01); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .play-button {
+    width: 60px;
+    height: 60px;
+  }
+
+  .play-button::before {
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 20px solid white;
+  }
+
+  #localizacao {
+    padding-top: 5px !important; /* Reduz drasticamente o espaçamento superior */
+    margin-top: -25px; /* Puxa a seção para cima */
+  }
+
+  #localizacao .content-container {
+    gap: 10px;
+    padding: 10px; 
+  }
+
+  #localizacao h2 {
+    margin-top: 0; /* Remove margem superior do título */
+    padding-top: 5px; /* Pequeno espaçamento apenas */
+  }
+
+  #localizacao .text-column,
+  #localizacao .map-container {
+    max-width: 100%;
+  }
+
+  #localizacao .text-column h2 {
+    font-size: 1.8em;
+  }
+
+  #localizacao .text-column p {
+    font-size: 1em;
+  }
+
+  #localizacao #map {
+    height: 300px;
+  }
+
+  .reservas-section {
+    padding: 20px 10px;
+  }
+  
+  .reservas-section h2 {
+    font-size: 1.8em;
+  }
+  
+
+  .platform-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .btn-platform {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .btn-platform i {
+    margin-bottom: 5px;
+    font-size: 1.2em;
+  }
+  
+  .btn-platform span {
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  /* Ajustes para o footer */
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .footer-section {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+
+  .footer-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    border-bottom: 3px solid #fff;
+    padding-bottom: 5px;
+  }
+
+  .footer-section p,
+  .footer-section ul {
+    margin: 5px 0;
+  }
+
+  .footer-section ul li {
+    margin-bottom: 5px;
+  }
+
+  .footer-section .social-icons {
+    grid-template-columns: 1fr;
+  }
+
+
+  .social-icons {
+    flex-wrap: nowrap;
+    justify-content: center; 
+    gap: 10px;
+    padding: 5px 0;
+  }
+
+  .social-icons a {
+    font-size: 1.5em;
+  }
+
+  .social-icons a span {
+    opacity: 1; /* Mostra o texto sempre em telas pequenas */
+    font-size: 0.6em; /* Aumenta um pouco o tamanho do texto */
+  }
+
+  .social-icons a:active {
+    transform: scale(0.95); /* Efeito de clique suave */
+  }
+
+  .social-icons a:active span {
+    opacity: 1; /* Mostra o texto ao tocar no ícone */
+  }
+
+  footer {
+    overflow: visible !important;
+    position: relative;
+    z-index: 40;
+  }
+  
+  .footer-bottom {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative;
+    z-index: 60;
+    padding: 15px 0 0;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .floating-cta {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2em;
+  }
+}

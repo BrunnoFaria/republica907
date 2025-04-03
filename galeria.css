@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+:root {
+  --primary-color: #003580; /* Azul escuro */
+  --secondary-color: #F8F8F8; /* Cinza claro */
+  --accent-color: #FF5A5F; /* Vermelho (destaque) */
+  --text-color: #333; /* Cor do texto principal */
+  --background-color: #fff; /* Cor de fundo */
+  --footer-color: #333; /* Cor do rodapé */
+  --footer-text-color: #fff; /* Cor do texto no rodapé */
+  --placeholder-color-1: #f5f5f5;
+  --placeholder-color-2: #e8e8e8;
+  --transition-time: 0.4s;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  width: 100%;
+  background-color: var(--background-color);
+}
+
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header */
+header {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(248, 248, 248, 0.9); /* Fundo semi-transparente */
+  backdrop-filter: blur(10px); /* Efeito de desfoque */
+}
+
+header .logo h1 {
+  margin: 0;
+  font-size: 2em;
+  color: var(--primary-color);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+}
+
+header .logo h1 i {
+  margin-right: 10px;
+}
+
+/* Menu Toggle (Hambúrguer) */
+.menu-toggle {
+  display: none; /* Oculta o botão do menu hambúrguer por padrão */
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Nav Links */
+/* Estilo para todos os ícones do menu principal */
+header .nav-links li a i {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  margin-right: 8px;
+}
+
+/* Específico para o ícone de localização */
+header .nav-links li a.location-link i {
+  color: var(--primary-color);
+  font-size: 1.1em;
+}
+
+/* Mantenha o ícone de reservas branco */
+header .nav-links li a i.fa-calendar-check {
+  color: inherit; /* Herda a cor do link pai */
+}
+
+
+/* Estilos da Galeria de Fotos */
+.gallery {
+  padding: 20px;
+  background-color: var(--secondary-color);
+}
+
+.gallery h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2em;
+  color: var(--primary-color);
+}
+
+.gallery-container {
+  max-width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.gallery-environment {
+  margin-bottom: 40px;
+}
+
+.gallery-environment h3 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 10px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  width: 100%;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+}
+
+.gallery-grid img.loaded {
+  height: auto; /* Mantém proporção após carregar */
+  min-height: 0; /* Remove qualquer altura mínima residual */
+}
+
+/* Container da imagem expandida */
+#expanded-image-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#expanded-image-container.show {
+  display: flex;
+  opacity: 1;
+}
+
+/* Imagem expandida */
+#expanded-image-container img.expanded {
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+img.lazy-load {
+  background: linear-gradient(135deg, #f5f5f5 25%, #e0e0e0 50%, #f5f5f5 75%);
+  background-size: 400% 400%;
+  animation: placeholderShimmer 1.5s ease infinite;
+  min-height: 200px;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  border-radius: 8px;
+}
+
+@keyframes placeholderShimmer {
+  0% { background-position: 0% 50% }
+  100% { background-position: 100% 50% }
+}
+
+img.lazy-load.loaded {
+  opacity: 1;
+  animation: none;
+}
+
+/* Botão de fechar */
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+  z-index: 1001;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Personalização do Lightbox */
+/* CORREÇÃO PARA SETAS E BOTÃO FECHAR DO LIGHTBOX */
+.lb-nav a.lb-prev, 
+.lb-nav a.lb-next {
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 5px #000) !important;
+}
+
+.lb-nav a.lb-prev { 
+  left: 0 !important; 
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>') center no-repeat !important;
+  width: 50px !important;
+  height: 100px !important;
+}
+
+.lb-nav a.lb-next { 
+  right: 0 !important;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>') center no-repeat !important;
+  width: 50px !important;
+  height: 100px !important;
+}
+
+.lb-close {
+  opacity: 1 !important;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>') center no-repeat !important;
+  width: 40px !important;
+  height: 40px !important;
+  top: 20px !important;
+  right: 20px !important;
+  filter: drop-shadow(0 0 3px #000) !important;
+}
+
+/* FUNDO SEMI-TRANSPARENTE (opcional) */
+.lb-overlay {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.lb-dataContainer {
+  background: rgba(0,0,0,0.7) !important;
+  border-radius: 8px !important;
+  padding: 15px !important;
+}
+
+.lb-caption {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  padding: 10px 0 !important;
+}
+
+.lb-number {
+  display: none !important; /* Opcional - remove "imagem 1 de X" */
+}
+
+
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas em mobile */
+    gap: 8px;
+  }
+  
+  .gallery-grid img {
+    height: 120px; /* Altura menor para mobile */
+    object-fit: cover;     /* Garante preenchimento sem distorção */
+    width: 100%;
+  }
+  
+  .lb-container {
+    padding: 0 10px !important;
+  }
+
+  .lb-dataContainer {
+    max-width: 90vw !important; /* Limita a largura */
+  }
+
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: block; /* Exibe o botão do menu hambúrguer em telas pequenas */
+  }
+
+  .nav-links {
+    display: none; /* Oculta o menu em telas pequenas */
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--secondary-color);
+    position: absolute;
+    top: 70px;
+    left: 0;
+    padding: 10px 0;
+    border-top: 1px solid var(--text-color);
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    display: flex; /* Exibe o menu quando a classe "active" é adicionada */
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  .gallery-row {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .gallery-row img {
+    height: 120px;
+  }
+}
+
+/* Ajustes de layout para telas grandes */
+@media (min-width: 768px) {
+  .gallery-section {
+    padding: 0 5%; /* Adiciona margens laterais */
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .gallery-header {
+    padding: 0 20px; /* Espaçamento interno */
+    margin-bottom: 30px;
+  }
+
+  .gallery-environment {
+    padding: 0 20px; /* Espaçamento para cada seção */
+    margin-bottom: 40px;
+  }
+
+  .gallery-environment h3 {
+    margin-left: 10px; /* Alinhamento com os filtros */
+  }
+}

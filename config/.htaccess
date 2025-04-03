@@ -1,0 +1,18 @@
+<IfModule mod_authz_core.c>
+    # Bloqueia acesso direto ao config.json
+    <Files "config.json">
+        Require all denied
+    </Files>
+    Options -Indexes
+</IfModule>
+
+# Força HTTPS e cache seguro
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+<FilesMatch "\.(json|webp|woff2|css|js)$">
+    Header set X-Content-Type-Options "nosniff"
+    ForceType application/json
+    Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>

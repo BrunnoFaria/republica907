@@ -300,11 +300,6 @@ document.querySelector('.theme-toggle')?.addEventListener('click', function() {
 
 loadInitialTheme();
 
-//Dark Mode Automatico por Horário:
-const hour = new Date().getHours();
-if (hour >= 18 || hour <= 6) document.body.classList.add('dark-mode');
-
-
 // ===== [8] Feedback de Loading em Botões (VERSÃO CORRIGIDA) =====
 document.querySelectorAll('.btn-platform').forEach(button => {
   button.addEventListener('click', function(e) {

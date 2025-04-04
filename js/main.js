@@ -119,7 +119,12 @@ document.addEventListener('DOMContentLoaded', function() {
           thumbnail.dataset.loaded = true;
           const iframe = document.createElement('iframe');
           iframe.loading = "lazy";
-          iframe.src = thumbnail.dataset.video + "&mute=1&background=1"; 
+          iframe.src = thumbnail.dataset.video + "&autoplay=1&muted=0&controls=1&playsinline=1&background=0"; 
+          setTimeout(() => {
+            if (iframe.contentWindow) {
+              iframe.contentWindow.postMessage('{"method":"setVolume", "value":1}', '*');
+            }
+          }, 1000);
           iframe.setAttribute('aria-hidden', 'true');
           thumbnail.appendChild(iframe);
         }
@@ -138,7 +143,12 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!this.classList.contains('show-video')) {
         const iframe = this.querySelector('iframe') || document.createElement('iframe');
         iframe.style.display = 'block';
-        iframe.src = `${this.getAttribute('data-video')}&autoplay=1`;
+        iframe.src = `${this.getAttribute('data-video')}&autoplay=1&muted=0&controls=1&playsinline=1&background=0`;
+        setTimeout(() => {
+          if (iframe.contentWindow) {
+            iframe.contentWindow.postMessage('{"method":"setVolume", "value":1}', '*');
+          }
+        }, 1000);
         iframe.setAttribute('allow', 'autoplay; fullscreen');
         iframe.style.width = '100%';
         iframe.style.height = '100%';
